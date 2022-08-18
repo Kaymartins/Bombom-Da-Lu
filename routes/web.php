@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +17,24 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // >>> insira suas rotas aqui !!!!! <<<
-    
+
+    //Products
+    Route::get('/produtos',[ProductController::class,'index'])->name('products.index');
+    Route::get('/produtos/create',[ProductController::class,'create'])->name('products.create');
+    Route::post('/produtos/store',[ProductController::class,'store'])->name('products.store');
+    Route::get('/produtos/{product}',[ProductController::class,'show'])->name('products.show');
+    Route::get('/produtos/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
+    route::put('/produtos/{product}',[ProductController::class,'update'])->name('products.update');
+    Route::delete('/produtos/{product}',[ProductController::class,'destroy'])->name('products.destroy');
+
     Route::get('/', function () {
         return view('dashboard');
     })/*->middleware('auth')*/;
-    
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })/*->middleware(['auth'])*/->name('dashboard');
-    
+
 });
 
 

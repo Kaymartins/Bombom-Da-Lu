@@ -18,7 +18,8 @@
            id="price"
            name="price"
            class="form-control mb-2"
-           value="{{ old('price',$product->price)}}">
+           value="{{ old('price',$product->price)}}"
+           onkeypress="filterInput(event)">
 
     <label for="description" class="form-label">Descrição:</label>
     <textarea
@@ -38,4 +39,13 @@
     @endisset
 
 </div>
+
+<script>
+    function filterInput(event){
+        var ch = String.fromCharCode(event.which);
+        if(!(/[0-9\.]+/.test(ch))){
+            event.preventDefault();
+        }
+    }
+</script>
 

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // >>> insira suas rotas aqui !!!!! <<<
 
     //Products
+    Route::resource('/products',ProductController::class);
+    /*
     Route::get('/produtos',[ProductController::class,'index'])->name('products.index');
     Route::get('/produtos/create',[ProductController::class,'create'])->name('products.create');
     Route::post('/produtos/store',[ProductController::class,'store'])->name('products.store');
@@ -26,6 +30,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/produtos/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
     route::put('/produtos/{product}',[ProductController::class,'update'])->name('products.update');
     Route::delete('/produtos/{product}',[ProductController::class,'destroy'])->name('products.destroy');
+    */
+
+    //Profile
+    Route::resource('/users',UserController::class);
+
+    //inventory
+    Route::resource('/inventories',InventoryController::class);
+    //Route::get('/inventories',[InventoryController::class,'index'])->name('inventories.index');
 
     Route::get('/', function () {
         return view('dashboard');

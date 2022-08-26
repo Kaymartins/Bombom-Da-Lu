@@ -42,7 +42,10 @@
 
     </div>
     <div class="d-flex justify-content-end">
-        <a href="{{route("products.edit",$product->id)}}" class="btn btn-primary me-2">Editar</a>
-        <a href="{{route("products.index")}}" class="btn btn-secondary me-2">Voltar</a>
+        @can('update',Auth::user())
+            <a href="{{route("products.edit",$product->id)}}" class="btn btn-primary me-2">Editar</a>
+        @endcan
+            <a href="{{route("products.index")}}" class="btn btn-secondary me-2">Voltar</a>
+
     </div>
 </form>

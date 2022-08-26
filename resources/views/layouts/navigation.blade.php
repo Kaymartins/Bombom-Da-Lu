@@ -20,6 +20,16 @@
                         {{ __('Produtos') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('inventories.index')" :active="request()->routeIs('inventories.index')">
+                        {{ __('Estoque') }}
+                    </x-nav-link>
+
+                    @can('viewAny',Auth::user())
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Usuarios') }}
+                        </x-nav-link>
+                    @endcan
+
                 </div>
             </div>
 
@@ -43,11 +53,16 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
+                            <x-dropdown-link :href="route('users.show',Auth::user())">
+                                {{ __('Ver Perfil') }}
+                            </x-dropdown-link>
+
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
+
                         </form>
                     </x-slot>
                 </x-dropdown>
@@ -75,13 +90,25 @@
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('Produtos') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('inventories.index')" :active="request()->routeIs('inventories.index')">
+                {{ __('Estoque') }}
+            </x-responsive-nav-link>
+
+            @can('viewAny',Auth::user())
+                <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                    {{ __('Usuários') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <a href="{{route("users.show",Auth::user())}}" class="text-decoration-none">
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                </a>
             </div>
 
             <div class="mt-3 space-y-1">

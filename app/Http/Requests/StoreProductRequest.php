@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreProductRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the users is authorized to make this request.
      *
      * @return bool
      */
@@ -24,9 +24,9 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:254|unique:products,name',
+            'name' => 'required|string|min:3|max:254',
             'flavor' => 'required|min:3|max:254',
-            'price' => 'numeric|gt:0',
+            'price' => 'required|numeric|gt:0',
             'description' => 'nullable',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
@@ -48,7 +48,6 @@ class StoreProductRequest extends FormRequest
         return [
             'required' => 'O campo :attribute é obrigatório',
             'min' => 'O campo :attribute precisa ter pelo menos :min caracteres',
-            'unique' => ':attribute já cadastrado',
             'numeric' => 'O campo :attribute deve ser preenchido por numeros',
             'gt' => 'O campo :attribute deve ser maior que 0'
         ];

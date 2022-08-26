@@ -2,18 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductCreated as ProductCreatedEvent;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use File;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
+
+
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Product::class, 'product');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         $products = Product::all();
@@ -50,6 +69,13 @@ class ProductController extends Controller
         }
 
         $product = Product::create($data);
+        $productCreatedEvent = new ProductCreatedEvent(
+            $product->id,
+            $product->name,
+            $product->flavor,
+            $product->price
+        );
+        event($productCreatedEvent);
 
         return to_route('products.index')
             ->with('message.success',"{$product->name} cadastrado com sucesso");
@@ -64,7 +90,18 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show')->with('product',$product);
+        $inventories =  Inventory::all()->where('product_id',$product->id);
+
+        if($inventories->count()>0){
+            $total_amount = 0;
+            foreach($inventories as $inventory){
+                $total_amount += $inventory->amount;
+            }
+            $product['amount'] = $total_amount;
+        }
+
+        return view('products.show')
+            ->with('product',$product);
     }
 
     /**
@@ -85,9 +122,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         if($image = $request->file('image')){
             File::delete("images/$product->image");

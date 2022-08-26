@@ -14,6 +14,14 @@ class Product extends Model
         'flavor',
         'price',
         'description',
-        'image'
+        'image',
     ];
+
+    /**
+     * Get the inventory that owns the product.
+     */
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
 }

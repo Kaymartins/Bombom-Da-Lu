@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('registration')->unique();
-            $table->string('fidelity')->default(0);
+            $table->integer('fidelity')->default(0);
             $table->string('permission')->default("Cliente");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -39,7 +39,7 @@
     </div>
     <div class="d-flex justify-content-end">
 
-        @can('update',Auth::user())
+        @can('update')
             <a href="{{route("inventories.edit",$inventory->id)}}" class="btn btn-primary me-2">Editar</a>
         @endcan
 

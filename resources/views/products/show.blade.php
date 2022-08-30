@@ -12,12 +12,12 @@
                     <a href="{{url()->previous()}}" class="btn btn-secondary mb-3">Voltar</a>
                     <div class="border row row-cols-1 row-cols-md-2">
                         <div class="col">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center p-2 ">
                                 <img src="/images/{{$product->image}}" class="img-thumbnail mt-3" alt="{{$product->image}}">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="d-flex flex-column justify-content-center w-100 h-50 mt-2">
+                            <div class="d-flex flex-column justify-content-center w-100 mt-2">
                                 <div class="border p-2">
                                     <h3>{{$product->name}}</h3>
                                     <p class="fw-normal">Sabor : {{$product->flavor}}</p>

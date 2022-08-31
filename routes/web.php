@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -39,13 +40,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/inventories',InventoryController::class);
     //Route::get('/inventories',[InventoryController::class,'index'])->name('inventories.index');
 
-    Route::get('/', function () {
-        return view('dashboard');
-    })/*->middleware('auth')*/;
+    Route::get('/', [HomeController::class,'index']
+    )/*->middleware('auth')*/;
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })/*->middleware(['auth'])*/->name('dashboard');
+    Route::get('/dashboard', [HomeController::class,'index']
+    )/*->middleware(['auth'])*/->name('dashboard');
 
 });
 

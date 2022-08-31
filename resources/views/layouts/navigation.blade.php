@@ -104,11 +104,11 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <a href="{{route("users.show",Auth::user())}}" class="text-decoration-none">
+            <div class="px-4 hover:bg-red-200">
+                <x-responsive-nav-link :href="route('users.show',Auth::user())" class="text-decoration-none" :active="request()->routeIs('users.show')">
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                </a>
+                </x-responsive-nav-link>
             </div>
 
             <div class="mt-3 space-y-1">

@@ -13,20 +13,21 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-orange-200 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="d-flex justify-content-end align-items-center">
                         @can('create',Auth::user())
                             <a href="{{route('products.create')}}" class="btn btn-dark mb-3">Adicionar</a>
                         @endcan
                     </div>
-                    <div class="card-body table-responsive ">
-                        <table  class="table table-hover table-striped" id="table">
+                    <div class="card-body table-responsive border-2 border-rose-200 p-4 m-2">
+                        <table class="table table-hover table-striped" id="table">
                             <thead>
                             <th>Nome</th>
                             <th>Preço</th>
-                            <th></th>
+
                             </thead>
+
                             <tbody id="tbody">
                             @foreach($products as $product)
                                 <tr>
@@ -53,6 +54,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                    </div>
                 </div>
             </div>
         </div>

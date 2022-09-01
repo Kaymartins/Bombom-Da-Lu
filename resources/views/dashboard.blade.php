@@ -13,10 +13,10 @@
                     <p class="text-xl mb-3">Veja alguns de nossos produtos em estoque:</p>
                     <div class="row row-cols-1 rol-cols-sm-2 row-cols-md-5 justify-content-center">
                         @foreach($inventories as $inventory)
-                            <div class="card me-2 mt-2 bg-rose-200" style="width: 18rem;">
+                            <div class="card me-2 mt-2" style="width: 18rem;">
 
                                 <div class="d-flex justify-content-center mt-2 mb-2">
-                                    <img src="images/{{$inventory->product->image}}" class="card-img-top img-fluid w-4/5 rounded" alt="{{$inventory->product->image}}">
+                                    <img src="images/{{$inventory->product->image}}" class="card-img-top img-fluid w-4/5 rounded" style="max-height:12rem;" alt="{{$inventory->product->image}}">
                                 </div>
                                     <div class="card-body">
                                         <div class="d-flex justify-content-center">
@@ -26,8 +26,11 @@
                                             <h6 class="card-subtitle mb-2 text-base text-muted">{{$inventory->product->flavor}}</h6>
                                         </div>
 
-                                    <p class="card-text">{{$inventory->product->description}}</p>
-                                    <a href="{{route('products.show',$inventory->product_id)}}" class="btn btn-primary mt-3">Ver Produto</a>
+                                    <p class="card-text font-bold"> R${{$inventory->product->price}}</p>
+
+                                    <a href="{{route('products.show',$inventory->product_id)}}" class="btn btn-primary mt-3">
+                                        Ver produto
+                                    </a>
                                 </div>
                             </div>
 

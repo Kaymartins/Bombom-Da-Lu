@@ -32,7 +32,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>{{$product->name}}</td>
-                                    <td>{{$product->price}}</td>
+                                    <td>R$ {{$product->price}}</td>
 
                                     <td class="options d-flex flex-row flex-wrap justify-content-end gap-1">
                                         <a href="{{route('products.show',$product->id)}}" class="btn btn-secondary btn-sm me-2 mt-1 mb-1">Visualizar</a>
@@ -54,6 +54,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {{$products->links()}}
                     </div>
                 </div>
             </div>

@@ -23,22 +23,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //Products
     Route::resource('/products',ProductController::class);
-    /*
-    Route::get('/produtos',[ProductController::class,'index'])->name('products.index');
-    Route::get('/produtos/create',[ProductController::class,'create'])->name('products.create');
-    Route::post('/produtos/store',[ProductController::class,'store'])->name('products.store');
-    Route::get('/produtos/{product}',[ProductController::class,'show'])->name('products.show');
-    Route::get('/produtos/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
-    route::put('/produtos/{product}',[ProductController::class,'update'])->name('products.update');
-    Route::delete('/produtos/{product}',[ProductController::class,'destroy'])->name('products.destroy');
-    */
 
     //Profile
     Route::resource('/users',UserController::class);
 
     //inventory
     Route::resource('/inventories',InventoryController::class);
-    //Route::get('/inventories',[InventoryController::class,'index'])->name('inventories.index');
 
     Route::get('/', [HomeController::class,'index']
     )/*->middleware('auth')*/;

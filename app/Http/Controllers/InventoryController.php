@@ -28,7 +28,7 @@ class InventoryController extends Controller
      */
     public function index(Request $request)
     {
-        $inventories = Inventory::all();
+        $inventories = Inventory::orderBy('created_at','desc')->paginate(10);;
         $messageSuccess = $request->session()->get('message.success');
         return view('inventories.index')
             ->with('inventories',$inventories)

@@ -16,9 +16,11 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $list_products = ['Diamante Negro', 'Sonho de valsa', 'Laka', 'Brigadeiro', 'Bombom', 'Beijinho', 'Bala'];
+        $list_flavors = ['Chocolate','Coco','Morango','Prestigio','laranja'];
         return [
-            'name' => $this->faker->name(),
-            'flavor' => $this->faker->word(),
+            'name' => $list_products[array_rand($list_products)],
+            'flavor' => $list_flavors[array_rand($list_flavors)],
             'price' => $this->faker->randomFloat(2),
             'image' => 'bombom.jpeg',
             'description' => $this->faker->text()

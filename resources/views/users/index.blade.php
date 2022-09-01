@@ -18,7 +18,7 @@
                     <div class="d-flex justify-content-end align-items-center">
                         <a href="{{route('users.create')}}" class="btn btn-dark mb-3">Adicionar</a>
                     </div>
-                    <ul class="list-group">
+                    <ul class="list-group border-2 border-rose-200 p-4 m-2">
                         @foreach($users as $user)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 {{$user->name}}
@@ -36,6 +36,7 @@
                             </li>
                         @endforeach
                     </ul>
+                    {{$users->links()}}
                 </div>
             </div>
         </div>

@@ -15,6 +15,6 @@ class InventorySeeder extends Seeder
      */
     public function run()
     {
-        Inventory::factory()->count(2)->create();
+        Inventory::factory()->count(17)->create();
     }
 }

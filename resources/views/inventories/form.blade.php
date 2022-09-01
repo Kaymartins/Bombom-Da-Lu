@@ -6,7 +6,7 @@
         class="form-control form-select mb-2">
         <option value="{{ old('product_id', $inventory->product_id ?? null) }}" hidden>{{old('product_name', $inventory->product->name ?? 'Selecione um produto')}}</option>
         @foreach($products as $product)
-            <option value="{{$product->id}}">{{$product->name}}</option>
+            <option value="{{$product->id}}">{{$product->name}} ({{$product->flavor}})</option>
         @endforeach
 
     </select>

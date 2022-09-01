@@ -35,7 +35,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::orderBy('created_at','desc')->paginate(10);
         $messageSuccess = $request->session()->get('message.success');
         return view('products.index')->with('products',$products)->with('messageSuccess',$messageSuccess);
     }

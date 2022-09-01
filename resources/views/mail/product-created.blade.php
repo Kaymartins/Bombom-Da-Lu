@@ -9,7 +9,7 @@
         Ver produto
 @endcomponent
 
-    Obrigado,<br>
-    {{ config('app.name') }}
+Obrigado,<br>
+{{ config('app.name') }}
 
 @endcomponent

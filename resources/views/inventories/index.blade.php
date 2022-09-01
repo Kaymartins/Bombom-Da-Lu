@@ -20,7 +20,7 @@
                             <a href="{{route('inventories.create')}}" class="btn btn-dark mb-3">Adicionar</a>
                         @endcan
                     </div>
-                    <div class="card-body table-responsive ">
+                    <div class="card-body table-responsive border-2 border-rose-200 p-4 m-2">
                         <table  class="table table-hover table-striped" id="table">
                             <thead>
                                 <th>Produto</th>
@@ -55,6 +55,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{$inventories->links()}}
                     </div>
                 </div>
             </div>

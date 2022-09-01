@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $inventories = Inventory::all()->take(10);
+        $inventories = Inventory::all()->take(8);
 
         return view('dashboard')
             ->with('inventories',$inventories);
